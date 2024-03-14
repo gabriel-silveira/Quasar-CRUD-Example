@@ -48,7 +48,7 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
-import { api } from 'boot/axios';
+// import { api } from 'boot/axios';
 import { LocalStorage, useQuasar } from 'quasar';
 import { useRouter } from 'vue-router';
 import { HOME } from 'src/router/routes/home';
