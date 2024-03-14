@@ -46,7 +46,6 @@
           :loading="props.confirming"
           :label="props.confirmLabel"
           color="primary"
-          push
           @click="emitEvent('confirm')"
         />
       </q-card-actions>

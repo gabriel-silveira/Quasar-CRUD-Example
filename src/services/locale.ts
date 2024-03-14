@@ -36,6 +36,7 @@ const defaultLocales = [
     iata: 'GRU',
     authorized_entity: 'GRU Airport',
     locale_class: 'A',
+    services: [],
   },
   {
     id: 2,
@@ -45,6 +46,7 @@ const defaultLocales = [
     iata: 'SDU',
     authorized_entity: 'Infraero',
     locale_class: 'B',
+    services: [],
   },
 ];
 
@@ -56,30 +58,47 @@ export interface ILocale {
   iata: string,
   authorized_entity: string,
   locale_class: string,
-  // services: ?,
+  services: string[],
 }
+
+const emptyLocale: ILocale = {
+  id: 0,
+  name: '',
+  address: '',
+  icao: '',
+  iata: '',
+  authorized_entity: '',
+  locale_class: '',
+  services: [],
+};
 
 class Locale {
   public data: {
     loading: boolean,
     showDialog: boolean,
     index: ILocale[],
-    current: ILocale | null,
+    current: ILocale,
     icao: string[],
     iata: string[],
     locale_classes: string[],
+    services: string[],
   } = reactive({
       loading: true,
       showDialog: false,
       index: [],
-      current: null,
+      current: { ...emptyLocale },
       icao: ['SBSP', 'SBRJ', 'SBGR', 'SBBR'],
       iata: ['CGH', 'SDU', 'GRU', 'DSB'],
       locale_classes: ['A', 'B', 'C', 'D', 'E', 'F'],
+      services: ['RADAR', 'ILS / ALS', 'VOR / DME', 'NDB', 'PAPI / VASIS'],
     });
 
   constructor() {
     this.data.index = [...defaultLocales];
+  }
+
+  public resetCurrentLocale() {
+    this.data.current = { ...emptyLocale };
   }
 
   public toggleEditDialog() {
@@ -120,7 +139,14 @@ class Locale {
 
   public create() {
     try {
-      return Promise.resolve(this);
+      this.data.index.push({
+        ...this.data.current,
+        id: this.data.index.length + 1,
+      });
+
+      this.resetCurrentLocale();
+
+      return Promise.resolve(true);
     } catch (error) {
       return Promise.reject(error);
     }

@@ -77,6 +77,14 @@
       </template>
     </q-table>
 
+    <q-btn
+      class="absolute-top-right"
+      style="margin: 40px 25px 0 0"
+      color="primary"
+      label="Nova localidade"
+      @click="startCreating"
+    />
+
     <edit-locale-modal />
 
     <delete-modal
@@ -157,6 +165,12 @@ const data = reactive({
   showDeleteDialog: false,
   deleting: false,
 });
+
+const startCreating = (localeData: ILocale) => {
+  locale.resetCurrentLocale();
+
+  locale.toggleEditDialog();
+};
 
 const startEditing = (localeData: ILocale) => {
   locale.data.current = { ...localeData };

@@ -46,7 +46,7 @@
       />
 
       <div class="row q-col-gutter-lg">
-        <div class="col-3">
+        <div class="col-4">
           <q-select
             v-model="locale.data.current.icao"
             :options="locale.data.icao"
@@ -55,7 +55,7 @@
           />
         </div>
 
-        <div class="col-3">
+        <div class="col-4">
           <q-select
             v-model="locale.data.current.iata"
             :options="locale.data.iata"
@@ -64,7 +64,7 @@
           />
         </div>
 
-        <div class="col-3">
+        <div class="col-4">
           <q-select
             v-model="locale.data.current.locale_class"
             :options="locale.data.locale_classes"
@@ -73,6 +73,16 @@
           />
         </div>
       </div>
+
+      <q-select
+        v-model="locale.data.current.services"
+        :options="locale.data.services"
+        :rules="[val => !!val || 'Informe a classe da localização']"
+        label="Serviços, instalações, auxílios e facilidades"
+        multiple
+        use-chips
+      />
+
     </q-form>
   </edit-modal>
 </template>
@@ -127,7 +137,10 @@ const saveAndClose = async () => {
     } else {
       await locale.create();
 
+      locale.toggleEditDialog();
+
       await locale.getLocales();
+
       $q.notify({
         message: 'Localidade criada',
         type: 'positive',

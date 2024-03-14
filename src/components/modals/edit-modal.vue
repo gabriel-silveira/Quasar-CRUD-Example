@@ -34,7 +34,6 @@
               class="float-right"
               label="Salvar"
               color="positive"
-              push
               @click="emitEvent('save')"
             />
 
@@ -45,7 +44,6 @@
               class="float-right q-mr-md"
               label="Excluir"
               color="negative"
-              push
               @click="emitEvent('delete', true)"
             />
           </div>
