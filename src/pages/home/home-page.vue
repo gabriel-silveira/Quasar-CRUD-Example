@@ -1,20 +1,5 @@
 <template>
-  <q-page padding>
-    <div class="full-width full-height">
-      <div
-        style="position:absolute;width:600px;top:50%;margin-top:-90px;left:50%;margin-left:-300px"
-      >
-        <q-img :src="Logo" alt="PAHO" />
-
-        <div
-          class="q-mt-md text-center text-primary text-bold"
-          style="font-size:42px"
-        >
-          Sistema de algoritmos clínicos
-        </div>
-      </div>
-    </div>
-  </q-page>
+  <q-page padding></q-page>
 </template>
 
 <script setup lang="ts">

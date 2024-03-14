@@ -6,16 +6,16 @@
     <q-input
       v-model="user.username"
       type="text"
-      label="Login"
-      :rules="[val => !!val || 'Ingrese su inicio de sesión']"
+      label="Usuário"
+      :rules="[val => !!val || 'Informe seu nome de usuário']"
       lazy-rules
       no-error-icon
     />
 
     <q-input
       v-model="user.password"
-      label="Contraseña"
-      :rules="[val => !!val || 'Informa tu contraseña']"
+      label="Senha"
+      :rules="[val => !!val || 'Informe sua senha']"
       lazy-rules
       no-error-icon
       :type="isPwd ? 'password' : 'text'"
@@ -37,7 +37,7 @@
           :loading="user.loggingIn"
           class="full-width"
           color="primary"
-          label="Iniciar sesión"
+          label="Entrar"
           push
           type="submit"
         />
@@ -74,19 +74,23 @@ async function tryLogin() {
   try {
     user.loggingIn = true;
 
-    const { data }: { data: {
-        id: number,
-        token: string,
-        user_name: string,
-    } } = await api.post('account/login', {
-      username: user.username,
-      password: user.password,
-    });
+    // const { data }: { data: {
+    //     id: number,
+    //     token: string,
+    //     user_name: string,
+    // } } = await api.post('account/login', {
+    //   username: user.username,
+    //   password: user.password,
+    // });
 
-    if (data.id && data.token) {
-      LocalStorage.set('token', data.token);
-      LocalStorage.set('user', data.id);
-      LocalStorage.set('user_name', data.user_name);
+    if (user.username === 'decea' && user.password === 'decea') {
+    // if (data.id && data.token) {
+      LocalStorage.set('token', 'b86efa746136bdbd7fe11a7bc6f9288d2b45c27b');
+      LocalStorage.set('user', 1);
+      LocalStorage.set('user_name', 'Usuário de Teste');
+      // LocalStorage.set('token', data.token);
+      // LocalStorage.set('user', data.id);
+      // LocalStorage.set('user_name', data.user_name);
 
       await router.push({
         name: HOME,
@@ -96,11 +100,11 @@ async function tryLogin() {
     } else {
       $q.notify({
         type: 'warning',
-        message: 'Login o la contraseña no son válidos.',
+        message: 'Usuário ou senha inválidos',
       });
     }
 
-    return Promise.resolve(data);
+    return Promise.resolve(true);
   } catch (error) {
     return Promise.reject(error);
   } finally {

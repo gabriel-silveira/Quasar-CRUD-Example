@@ -20,8 +20,7 @@
           v-if="!isPublicView"
         >
           <div class="inline-block q-mr-md">
-            <b>Gabriel Silveira</b>
-<!--            <b>{{ userName }}</b> {{ isMaster ? '(Master)' : '' }}-->
+            <b>{{ userName }}</b>
           </div>
 
           <div class="inline-block q-mr-xs">
@@ -96,7 +95,7 @@ const isMaster = ref(false);
 
 const showLogoutDialog = ref(false);
 
-// const userName = computed(() => LocalStorage.getItem('user_name'));
+const userName = computed(() => LocalStorage.getItem('user_name'));
 
 const toggleLeftDrawer = () => {
   settings.page.mainMenu = !settings.page.mainMenu;

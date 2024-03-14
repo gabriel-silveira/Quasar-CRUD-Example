@@ -1,13 +1,23 @@
 <template>
   <q-card
-    class="shadow-light rounded-borders q-pa-lg"
+    class="shadow-light rounded-borders"
     style="width:400px"
   >
-    <div>
-      <q-img :src="Logo" />
+    <div class="bg-primary text-center text-white q-py-md">
+      <q-img
+        :src="Logo"
+        width="72px"
+        alt="Departamento de Controle do Espaço Aéreo"
+        class="q-my-md"
+      />
+
+      <h5 class="q-pa-none q-ma-none">Portal Localidades</h5>
     </div>
 
-    <login-form />
+    <div class="q-pa-lg">
+      <login-form />
+    </div>
+
   </q-card>
 </template>
 
