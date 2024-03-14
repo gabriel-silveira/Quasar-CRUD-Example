@@ -6,10 +6,14 @@
 
 <script setup lang="ts">
 import { provide } from 'vue';
+import { LocalStorage } from 'quasar';
 
-import Locale from 'src/services/locale';
+import Locale, { ILocale } from 'src/services/locale';
 import LocaleTable from 'components/tables/locale-table.vue';
 
-const locale = new Locale();
+const localesOnStorage = LocalStorage.getItem('locales') as ILocale[] | undefined;
+
+const locale = new Locale(localesOnStorage);
+
 provide('locale', locale);
 </script>

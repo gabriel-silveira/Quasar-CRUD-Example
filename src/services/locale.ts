@@ -1,4 +1,5 @@
 import { reactive } from 'vue';
+import { LocalStorage } from 'quasar';
 
 const days = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
 
@@ -93,8 +94,8 @@ class Locale {
       services: ['RADAR', 'ILS / ALS', 'VOR / DME', 'NDB', 'PAPI / VASIS'],
     });
 
-  constructor() {
-    this.data.index = [...defaultLocales];
+  constructor(localesOnStorage: ILocale[] | undefined) {
+    this.data.index = localesOnStorage || [...defaultLocales];
   }
 
   public resetCurrentLocale() {
@@ -137,6 +138,23 @@ class Locale {
     }
   }
 
+  public create() {
+    try {
+      this.data.index.push({
+        ...this.data.current,
+        id: this.data.index.length + 1,
+      });
+
+      LocalStorage.set('locales', this.data.index);
+
+      this.resetCurrentLocale();
+
+      return Promise.resolve(true);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
   public update() {
     try {
       if (this.data.current) {
@@ -146,23 +164,10 @@ class Locale {
           const index = this.data.index.indexOf(itemFound);
 
           this.data.index[index] = { ...this.data.current };
+
+          LocalStorage.set('locales', this.data.index);
         }
       }
-
-      return Promise.resolve(true);
-    } catch (error) {
-      return Promise.reject(error);
-    }
-  }
-
-  public create() {
-    try {
-      this.data.index.push({
-        ...this.data.current,
-        id: this.data.index.length + 1,
-      });
-
-      this.resetCurrentLocale();
 
       return Promise.resolve(true);
     } catch (error) {
@@ -179,6 +184,8 @@ class Locale {
 
         if (index > -1) {
           this.data.index.splice(index, 1);
+
+          LocalStorage.set('locales', this.data.index);
         }
       }
 
