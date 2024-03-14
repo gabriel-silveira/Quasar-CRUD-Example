@@ -13,7 +13,6 @@ import customElements, {
 
 import { reactive } from 'vue';
 
-import { autoResizeTextarea } from 'src/services/editor/textarea';
 import icons from 'src/services/editor/elements/svg_icons';
 
 import {
@@ -533,9 +532,6 @@ class Element {
 
         this.data.selectedId = elementId;
 
-        console.log('Selected element props:');
-        console.log({ ...element });
-
         const selectedElement = this.getSelected();
 
         if (selectedElement && selectedElement.prop('type') === CustomElement.LANE) {
@@ -663,7 +659,7 @@ class Element {
           // eslint-disable-next-line no-restricted-syntax
           for (const input of inputs) {
             if (input instanceof HTMLTextAreaElement) {
-              autoResizeTextarea(input);
+              // autoResizeTextarea(input);
             }
 
             input.addEventListener('input', (event) => {

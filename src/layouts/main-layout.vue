@@ -96,8 +96,7 @@ const isMaster = ref(false);
 
 const showLogoutDialog = ref(false);
 
-const userName = computed(() => LocalStorage.getItem('user_name'));
-const appVersion = computed(() => process.env.APP_VERSION || 0);
+// const userName = computed(() => LocalStorage.getItem('user_name'));
 
 const toggleLeftDrawer = () => {
   settings.page.mainMenu = !settings.page.mainMenu;

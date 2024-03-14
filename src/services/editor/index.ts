@@ -77,8 +77,6 @@ class Editor {
       try {
         this.paperDiv = document.getElementById(elementId) || undefined;
 
-        console.log(this.paperDiv);
-
         const options = {
           el: this.paperDiv,
           model: this.data.graph,

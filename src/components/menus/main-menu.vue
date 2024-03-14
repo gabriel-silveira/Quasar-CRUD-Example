@@ -23,15 +23,12 @@
 </template>
 
 <script setup lang="ts">
-import { IMainMenuSection, allSections, restrictedSections } from 'src/router/sections';
-import Settings from 'src/services/settings';
+import { IMainMenuSection, allSections } from 'src/router/sections';
 
 import { HOME } from 'src/router/routes/home';
 
 import { useRoute, useRouter } from 'vue-router';
-import { inject, onBeforeMount, ref } from 'vue';
-
-const settings = inject('settings') as Settings;
+import { onBeforeMount, ref } from 'vue';
 
 const route = useRoute();
 const router = useRouter();

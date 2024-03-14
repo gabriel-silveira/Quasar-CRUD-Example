@@ -1,7 +1,7 @@
 import { reactive } from 'vue';
 import { RouteLocationNormalizedLoaded, Router } from 'vue-router';
 import { ALGORITHMS_PUBLIC_EDITOR, ALGORITHMS_PUBLIC_SEARCH } from 'src/router/routes/algorithms';
-import { api } from 'boot/axios';
+// import { api } from 'boot/axios';
 
 class Settings {
   private appName = 'DECEA - Portal Localidades';
@@ -49,9 +49,7 @@ class Settings {
 
   private async getUserRoles() {
     try {
-      console.log(this);
-
-      return Promise.resolve({ maintainer: 0, master: 0 });
+      return Promise.resolve({ maintainer: 0, master: 0, instance: this });
       // if (!this.userId) return Promise.resolve({ maintainer: false, master: false });
       //
       // const { data }: {
