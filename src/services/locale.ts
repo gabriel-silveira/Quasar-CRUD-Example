@@ -119,6 +119,24 @@ class Locale {
     }
   }
 
+  public searchLocale(keyword: string) {
+    try {
+      this.data.loading = true;
+
+      const localesFound = this.data.index.filter(
+        (locale) => locale.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1,
+      );
+
+      return Promise.resolve(localesFound);
+    } catch (error) {
+      return Promise.reject(error);
+    } finally {
+      setTimeout(() => {
+        this.data.loading = false;
+      }, 1000);
+    }
+  }
+
   public update() {
     try {
       if (this.data.current) {

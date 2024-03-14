@@ -47,6 +47,14 @@
             {{ props.row.locale_class }}
           </q-td>
 
+          <q-td :props="props" key="services">
+            <q-chip
+              v-for="service of props.row.services"
+              :key="`${props.row.id}-${service}` "
+              :label="service"
+            />
+          </q-td>
+
           <q-td :props="props" key="action">
             <q-btn
               color="primary"
@@ -77,13 +85,28 @@
       </template>
     </q-table>
 
-    <q-btn
+    <div
       class="absolute-top-right"
-      style="margin: 40px 25px 0 0"
-      color="primary"
-      label="Nova localidade"
-      @click="startCreating"
-    />
+      style="margin: 30px 25px 0 0"
+    >
+      <q-btn
+        class="float-right"
+        color="primary"
+        label="Nova localidade"
+        @click="startCreating"
+      />
+
+      <div
+        class="absolute-top-right"
+        style="width:250px;margin:-20px 200px 0 0"
+      >
+        <search-input
+          label="Buscar localidade"
+          @clear="clearSearch"
+          @search="searchLocale"
+        />
+      </div>
+    </div>
 
     <edit-locale-modal />
 
@@ -104,6 +127,7 @@ import { useQuasar } from 'quasar';
 import Locale, { ILocale } from 'src/services/locale';
 import EditLocaleModal from 'components/modals/locale/edit-locale-modal.vue';
 import DeleteModal from 'components/modals/simple-modal.vue';
+import SearchInput from 'components/inputs/search-input.vue';
 
 const $q = useQuasar();
 
@@ -153,6 +177,13 @@ const columns = [
     style: 'width:10%',
   },
   {
+    name: 'services',
+    align: 'left',
+    label: 'Serviços, instalações, auxílios e facilidades',
+    field: 'services',
+    style: 'width:10%',
+  },
+  {
     name: 'action',
     align: 'right',
     label: '',
@@ -166,7 +197,7 @@ const data = reactive({
   deleting: false,
 });
 
-const startCreating = (localeData: ILocale) => {
+const startCreating = () => {
   locale.resetCurrentLocale();
 
   locale.toggleEditDialog();
@@ -205,6 +236,14 @@ const deleteAndClose = async () => {
   } finally {
     data.deleting = false;
   }
+};
+
+const clearSearch = async () => {
+  data.index = await locale.getLocales();
+};
+
+const searchLocale = async (keyword: string) => {
+  data.index = await locale.searchLocale(keyword);
 };
 
 onMounted(async () => {
