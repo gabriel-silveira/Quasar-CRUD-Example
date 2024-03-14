@@ -1,0 +1,100 @@
+// app global css in Sass form
+
+b
+  font-weight: 500
+
+.q-table .q-tr:hover .q-td
+  color: var(--q-primary)
+
+.shadow-light
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.04)
+
+.shadow-light-up
+  box-shadow: 5px -5px 10px rgba(0,0,0,0.04)
+
+.shadow-light-with-borders
+  border: 1px solid rgba(0, 0, 0, 0.05)
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.04)
+
+.editor-action-element
+  padding: 0
+  margin: 0
+  width: 200px
+  height: 100px
+  background: #e2f3fb
+  display: flex
+  align-items: center
+  justify-content: center
+  border: 3px solid #1998DD
+  border-radius: 5px
+
+  .editor-action-element-bevel
+    width: 94%
+    height: 80%
+    margin-top: -8px
+    background: #dae7ef
+
+.editor-evaluation-element
+  padding: 0
+  margin: 0
+  width: 200px
+  height: 100px
+  background: url('/imgs/hexagono.svg')
+
+g[data-type="ActionElement"] .element-textarea-input,
+g[data-type="EvaluationElement"] .element-textarea-input
+  position: absolute
+  border: 1px solid transparent
+  outline: none
+  background-color: transparent
+  width: 160px
+  left: 50%
+  margin-left: -80px
+  top: 50%
+  margin-top: -12px
+  padding: 0
+  text-align: center
+  resize: none
+  overflow-y: hidden
+
+g[data-type="LaneElement"] .element-textarea-input
+  position: absolute
+  border: none
+  outline: none
+  background-color: transparent
+  width: 160px
+  left: 40px
+  top: 0
+  padding: 0
+  resize: none
+  font-size: 22px
+  color: #555
+
+//g[data-type="ActionElement"]
+//  -webkit-user-select: text  /* prefix needed for Safari */
+//  user-select: text
+//
+//g[data-type="ActionElement"] p
+//  cursor: auto
+
+.recommendation-element
+  overflow-y: auto
+  padding: 0
+  width: 500px
+  height: 175px
+  background: #FFFFFF
+  border: 1px solid #CCCCCC
+  border-radius: 5px
+
+.recommendation-element div.row
+  padding: 0
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+
+.recommendation-element div.row div.col-8
+  padding-left: 24px
+  text-indent: -14px
+
+.recommendation-element div.row:hover
+  cursor: pointer
+  color: var(--q-primary)
+
